@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class StatisticsClient {
   getStatistics() {
-    return axios.get('http://localhost:4200/api/statistics');
+    return axios.get('https://light-map-back.herokuapp.com/api/statistics');
   }
 }
 
