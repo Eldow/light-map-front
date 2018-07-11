@@ -1,1 +1,1 @@
-# Lightmap client
+# LightMap client
