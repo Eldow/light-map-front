@@ -1,0 +1,20 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(400px, 1000px) );
+  grid-auto-columns: min-content;
+  padding: 1rem;
+  grid-gap: 1rem;
+}
+
+.grid-item {
+  background-color: #fff;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.title {
+  font-weight: 500;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

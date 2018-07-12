@@ -1,11 +1,6 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #eee;
-}
-
-.grid-item {
-  background-color: #fff;
-  padding: 20px;
-  text-align: center;
+.container {
+  margin: auto;
+  max-width: 1000px;
+  flex-grow: 1;
+  padding: 2rem 5rem;
 }
