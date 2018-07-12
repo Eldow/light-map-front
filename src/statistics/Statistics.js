@@ -22,7 +22,7 @@ class Statistics extends Component {
   statisticsWithLabel = () => {
     const { statistics } = this.state;
     
-    return statistics.map(stat => ({ ...stat, label: statisticsConfig[stat.category.key] }));
+    return statistics.map(stat => ({ ...stat, label: statisticsConfig[stat._id.key] }));
   };
   
   getTableColumns = () => [{
@@ -48,7 +48,10 @@ class Statistics extends Component {
           label: key,
           backgroundColor: '#71b280',
           hoverBackgroundColor: '#134e5e',
-          data: Object.keys(statisticsConfig).map(key => statistics.find(stat => stat._id.key === key))
+          data: Object.keys(statisticsConfig).map((categoryKey) => {
+            const stat = statistics.find(stat => stat._id.key === categoryKey);
+            return stat[key];
+          })
         }
       ]
     };
