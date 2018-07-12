@@ -19,9 +19,15 @@ class Statistics extends Component {
     StatisticsClient.getStatistics().then(response => this.setState({ statistics: response.data.statistics }));
   }
   
+  statisticsWithLabel = () => {
+    const { statistics } = this.state;
+    
+    return statistics.map(stat => ({ ...stat, label: statisticsConfig[stat.category] }));
+  };
+  
   getTableColumns = () => [{
     Header: 'Category',
-    accessor: '_id'
+    accessor: 'label',
   }, {
     Header: 'Sum',
     accessor: 'sum',
@@ -49,8 +55,6 @@ class Statistics extends Component {
   };
   
   render() {
-    const { statistics } = this.state;
-    
     return (
       <div className="grid-container">
         {
@@ -60,7 +64,7 @@ class Statistics extends Component {
                 Tableau récapitulatif
               </div>
               <ReactTable
-                data={statistics}
+                data={this.statisticsWithLabel()}
                 columns={this.getTableColumns()}
                 defaultPageSize={5}
               />
