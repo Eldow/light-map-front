@@ -24,7 +24,6 @@ class App extends Component {
     StatisticsClient.getStatistics().then(response =>
       this.setState({
         statistics: response.data.statistics
-          .sort((a, b) => a.category - b.category)
       }));
   }
 
