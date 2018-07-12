@@ -50,7 +50,7 @@ class Statistics extends Component {
           hoverBackgroundColor: '#134e5e',
           data: Object.keys(statisticsConfig).map((categoryKey) => {
             const stat = statistics.find(stat => stat._id.key === categoryKey);
-            return stat[key];
+            return stat && stat[key];
           })
         }
       ]
