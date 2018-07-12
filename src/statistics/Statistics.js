@@ -22,7 +22,7 @@ class Statistics extends Component {
   statisticsWithLabel = () => {
     const { statistics } = this.state;
     
-    return statistics.map(stat => ({ ...stat, label: statisticsConfig[stat.category] }));
+    return statistics.map(stat => ({ ...stat, label: statisticsConfig[stat.category.key] }));
   };
   
   getTableColumns = () => [{
