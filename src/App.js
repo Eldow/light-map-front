@@ -6,6 +6,14 @@ import { Bar } from 'react-chartjs-2';
 import 'react-table/react-table.css';
 import './App.css';
 
+const labels = {
+  1: 'Moins de 700 Kwh/m²/an',
+  2: 'De 700 à 800 Kwh/m²/an',
+  3: 'De 800 à 900 Kwh/m²/an',
+  4: 'De 900 à 1000 Kwh/m²/an',
+  5: 'Plus de 1000 Kwh/m²/an',
+}
+
 class App extends Component {
 
   state = {
@@ -13,12 +21,16 @@ class App extends Component {
   };
 
   componentDidMount() {
-    StatisticsClient.getStatistics().then(response => this.setState({ statistics: response.data.statistics }));
+    StatisticsClient.getStatistics().then(response =>
+      this.setState({
+        statistics: response.data.statistics
+          .sort((a, b) => a.category - b.category)
+      }));
   }
 
   getTableColumns = () => [{
     Header: 'Category',
-    accessor: '_id'
+    accessor: 'label'
   }, {
     Header: 'Sum',
     accessor: 'sum',
@@ -32,8 +44,9 @@ class App extends Component {
 
   displayData = key => {
     const { statistics } = this.state;
+
     return {
-      labels: statistics.map(stat => stat[key]),
+      labels: Object.values(labels),
       datasets: [
         {
           label: key,
@@ -48,16 +61,22 @@ class App extends Component {
     };
   }
 
-  render() {
+  statsWithLabels = () => {
     const { statistics } = this.state;
 
+    return statistics
+      .map(stat => ({ ...stat, label: labels[stat.category] }))
+  }
+
+
+  render() {
     return (
       <div className="grid-container">
         {
           <React.Fragment>
             <div className="grid-item">
               <ReactTable
-                data={statistics}
+                data={this.statsWithLabels()}
                 columns={this.getTableColumns()}
                 defaultPageSize={5}
               />
