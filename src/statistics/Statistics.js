@@ -58,6 +58,16 @@ class Statistics extends Component {
   };
   
   render() {
+    const options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    };
+    
     return (
       <div className="grid-container">
         {
@@ -78,6 +88,7 @@ class Statistics extends Component {
               </div>
               <Bar
                 data={this.displayData('sum')}
+                options={options}
               />
             </div>
             <div className="grid-item">
@@ -86,6 +97,7 @@ class Statistics extends Component {
               </div>
               <Bar
                 data={this.displayData('avg')}
+                options={options}
               />
             </div>
             <div className="grid-item">
@@ -94,6 +106,7 @@ class Statistics extends Component {
               </div>
               <Bar
                 data={this.displayData('count')}
+                options={options}
               />
             </div>
           </React.Fragment>
