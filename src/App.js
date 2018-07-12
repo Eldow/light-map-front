@@ -22,9 +22,8 @@ class App extends Component {
 
   componentDidMount() {
     StatisticsClient.getStatistics().then(response =>
-      this.setState({
-        statistics: response.data.statistics
-      }));
+      this.setState({ statistics: response.data.statistics })
+    );
   }
 
   getTableColumns = () => [{
